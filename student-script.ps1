@@ -1,0 +1,3 @@
+function ExampleFunction {
+    return "ExpectedOutput"
+}
