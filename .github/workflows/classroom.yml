@@ -1,27 +1,24 @@
-name: Autograding Tests
-'on':
-- workflow_dispatch
-- repository_dispatch
-permissions:
-  checks: write
-  actions: read
-  contents: read
+name: PowerShell Script Tests
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
 jobs:
-  run-autograding-tests:
+  test-powershell-scripts:
     runs-on: ubuntu-latest
-    if: github.actor != 'github-classroom[bot]'
+
     steps:
     - name: Checkout code
       uses: actions/checkout@v4
-    - name: functional_test
-      id: functional_test
-      uses: classroom-resources/autograding-python-grader@v1
-      with:
-        timeout: 10
-        setup-command: ''
-    - name: Autograding Reporter
-      uses: classroom-resources/autograding-grading-reporter@v1
-      env:
-        FUNCTIONAL_TEST_RESULTS: "${{steps.functional_test.outputs.result}}"
-      with:
-        runners: functional_test
+
+    - name: Set up PowerShell
+      uses: actions/setup-powershell@v2
+
+    - name: Run PowerShell script tests
+      run: |
+        pwsh -File ./scripts/test-script.ps1
