@@ -8,6 +8,7 @@ function Test-Example {
     $result = ExampleFunction
     if ($result -ne "ExpectedOutput") {
         throw "Test failed: Expected 'ExpectedOutput' but got '$result'"
+    }
 }
 
 # Run tests
