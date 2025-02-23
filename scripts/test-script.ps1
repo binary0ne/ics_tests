@@ -6,11 +6,8 @@
 # Define tests
 function Test-Example {
     $result = ExampleFunction
-    if ($result -eq "ExpectedOutput") {
-        Write-Output "Test passed"
-    } else {
-        Write-Error "Test failed"
-    }
+    if ($result -ne "ExpectedOutput") {
+        throw "Test failed: Expected 'ExpectedOutput' but got '$result'"
 }
 
 # Run tests
