@@ -18,7 +18,7 @@ jobs:
 
     - name: Run PowerShell script tests
       run: |
-        pwsh -File ./scripts/test-script.ps1
+        pwsh -File ./scripts/test-script.ps1 > test-results.txt
 
     - name: Upload test results
       if: failure()
