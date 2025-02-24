@@ -18,17 +18,4 @@ jobs:
 
     - name: Run PowerShell script tests
       run: |
-        pwsh -File ./scripts/test-script.ps1 > test-results.txt
-
-    - name: Commit test results to gh-pages
-      if: failure()
-      run: |
-        git config --global user.name 'github-actions[bot]'
-        git config --global user.email 'github-actions[bot]@users.noreply.github.com'
-        git checkout -b gh-pages
-        mv test-results.txt index.html
-        git add index.html
-        git commit -m 'Update test results'
-        git push --force origin gh-pages
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        pwsh -File ./scripts/test-script.ps1
